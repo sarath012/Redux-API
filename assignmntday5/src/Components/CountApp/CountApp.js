@@ -36,7 +36,7 @@ export default function CountApp() {
     const [count, dispatch] = useReducer(reducer, initialState);
   return (
     <div>
-        <appContext.Provider value={{count, handleIncrement, handleDecrement,handleReset}}>
+        <appContext.Provider value={{handleIncrement, handleDecrement,handleReset}}>
 
             <h2>{count}</h2>
             <Increment/>
