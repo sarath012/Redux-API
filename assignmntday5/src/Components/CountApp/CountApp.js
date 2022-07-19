@@ -11,7 +11,7 @@ import { appContext } from '../../Context/AppContext'
 export default function CountApp() {
     const initialState = 0;
     const reducer = (state, action) => {
-        switch (action) {
+        switch (action.type) {
             case "add":
                 return state + 1;
             case "subtract":
@@ -22,11 +22,21 @@ export default function CountApp() {
             throw new Error("Unexpected action");
         }
     };
- 
+    
+    const handleIncrement = () =>{
+        dispatch ({type: 'add'})
+    }
+    const handleDecrement = () =>{
+        dispatch ({type: 'subtract'})
+    }
+    const handleReset = () =>{
+        dispatch ({type: 'reset'})
+    }
+
     const [count, dispatch] = useReducer(reducer, initialState);
   return (
     <div>
-        <appContext.Provider value={{count, dispatch}}>
+        <appContext.Provider value={{count, handleIncrement, handleDecrement,handleReset}}>
 
             <h2>{count}</h2>
             <Increment/>

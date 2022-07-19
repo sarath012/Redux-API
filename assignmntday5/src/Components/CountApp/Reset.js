@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { appContext } from '../../Context/AppContext'
 
 export default function Reset() {
-    const {count, dispatch} = useContext(appContext)
+    const {count, handleIncrement, handleDecrement,handleReset} = useContext(appContext)
   return (
     <div>
-        <button onClick={() => dispatch("reset")}>
+        <button onClick={handleReset}>
             Reset
         </button>
     </div>
