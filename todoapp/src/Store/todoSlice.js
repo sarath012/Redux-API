@@ -1,30 +1,54 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-export const todoSlice = createSlice({
-  name: 'counter',
+export const todoReducer = createSlice({
+  //   name: "todo",
+  //   initialState: {
+  //     active: {
+  //       actArray: [],
+  //       completestatus: false,
+  //     },
+  //     completed: {
+  //       compArray: [],
+  //       completestatus: true,
+  //     },
+  //   },
+  //   reducers: {
+  //     setActive: (state, action) => {
+  //       state.active.actArray.push(action.payload);
+  //     },
+  //     setCompleted: (state, action) => {
+  //       state.active.actArray = state.active.actArray.filter((item,index) => index !== action.payload.index);
+  //       state.completed.compArray.push(action.payload.item);
+  //     },
+  //   },
+  // });
+
+  name: "todo",
   initialState: {
     active: [],
+    isActive: true,
     completed: [],
-    value:0
+    isComplete: true,
   },
   reducers: {
-    addTask: (state, action) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
+    setActive: (state, action) => {
       state.active.push(action.payload);
     },
-    decrement: (state) => {
-      state.value -= 1
+    setIsActive: (state, action) => {
+      state.isActive = action.payload;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    setCompleted: (state, action) => {
+      state.active = state.active.filter(
+        (item, index) => index !== action.payload.index
+      );
+      state.completed.push(action.payload.item);
+    },
+    setIsComplete: (state, action) => {
+      state.isComplete = action.payload;
     },
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = todoSlice.actions
+export const { setActive, setCompleted, setIsActive, setIsComplete } = todoReducer.actions;
 
-export default todoSlice.reducer
+export default todoReducer.reducer;
